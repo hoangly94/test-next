@@ -12,15 +12,26 @@ const postCssImport = postCSSImport({
 })
 
 const colorFunction = require('postcss-color-function')
+const postcssCssNext = require('postcss-cssnext')
 
 module.exports = {
-  plugins: [
-    postCssImport,
-    postCSSAutoprefixer,
-    postCSSNested,
-    postCssCssVariables,
-    postCSSInlineSVG,
-    colorFunction,
-    cssnano,
-  ],
+  plugins: {
+    'postcss-flexbugs-fixes': {},
+    'postcss-preset-env': {
+      autoprefixer: {
+        flexbox: 'no-2009',
+      },
+      stage: 3,
+      features: {
+        'custom-properties': false,
+      },
+    },
+    'autoprefixer': {},
+    'postcss-import': {
+      addDependencyTo: webpack,
+    },
+    'postcss-nested': {},
+    'cssnano': {},
+    'postcss-color-function': {},
+  },
 }
